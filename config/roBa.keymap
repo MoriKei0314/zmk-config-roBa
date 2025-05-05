@@ -75,12 +75,23 @@
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        Windows_layer {
             bindings = <
-&kp Q             &kp W         &kp E         &kp R                       &kp T                                                 &kp Y        &kp U  &lt 5 I    &kp O    &kp P
-&kp A             &kp S         &kp D         &kp F                       &kp G      &kp LS(LG(S))               &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SQT
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                       &kp B      &kp COLON                   &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 6 LA(GRAVE)  &lt 2 TAB  &lt_to_layer_0 3 SPACE      &kp BACKSPACE  &lt 1 ENTER                             &kp DEL
+&kp Q             &kp W         &kp E             &kp R                       &kp T                                                 &kp Y        &kp U  &lt 6 I    &kp O    &kp P
+&kp A             &kp S         &kp D             &kp F                       &kp G      &kp LS(LG(S))               &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SQT
+&mt LEFT_SHIFT Z  &kp X         &kp C             &kp V                       &kp B      &kp COLON                   &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
+&kp LCTRL         &kp LEFT_ALT  &kp LEFT_COMMAND  &lt_to_layer_0 7 LA(GRAVE)  &lt 3 TAB  &lt_to_layer_0 4 SPACE      &kp BACKSPACE  &lt 2 ENTER                             &kp DEL
+            >;
+
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
+        };
+
+        Mac_layer {
+            bindings = <
+&kp Q             &kp W         &kp E             &kp R                       &kp T                                                 &kp Y        &kp U  &lt 6 I    &kp O    &kp P
+&kp A             &kp S         &kp D             &kp F                       &kp G      &kp LS(LG(S))               &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SQT
+&mt LEFT_SHIFT Z  &kp X         &kp C             &kp V                       &kp B      &kp COLON                   &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
+&kp LCTRL         &kp LEFT_ALT  &kp LEFT_COMMAND  &lt_to_layer_0 7 LA(GRAVE)  &lt 3 TAB  &lt_to_layer_0 4 SPACE      &kp BACKSPACE  &lt 2 ENTER                             &kp DEL
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -120,7 +131,7 @@
 &trans  &trans  &trans  &trans  &trans                                  &trans  &trans    &trans    &trans    &trans
 &trans  &trans  &trans  &trans  &trans     &trans      &trans           &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
 &trans  &trans  &trans  &trans  &trans     &trans      &trans           &trans  &trans    &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &lt 0 TAB  &trans      &lt 1 BACKSPACE  &trans                                &trans
+&trans  &trans  &trans  &trans  &lt 0 TAB  &trans      &lt 2 BACKSPACE  &trans                                &trans
             >;
         };
 
@@ -133,7 +144,7 @@
             >;
         };
 
-        layer_6 {
+        Bluetooth_layer {
             bindings = <
 &trans  &trans        &trans        &trans        &trans                           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
 &trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans        &trans        &trans        &trans        &trans
