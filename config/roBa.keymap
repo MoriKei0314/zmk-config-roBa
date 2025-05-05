@@ -41,11 +41,6 @@
             key-positions = <24 25>;
         };
 
-        Left_Click {
-            bindings = <&mkp MB1>;
-            key-positions = <18 39>;
-        };
-
         Right_Click {
             bindings = <&mkp MB2>;
             key-positions = <39 20>;
