@@ -1,17 +1,16 @@
-# build.yaml - ZMK v0.3 optimized build matrix
 include:
   # roBa Right (Central) - studio snippet
   - board: seeeduino_xiao_ble
-    shield: roBa_R
+    shield: roBa/roBa_R
     snippet: studio-rpc-usb-uart
 
-  # roBa Left (Remote) - no snippet
+  # roBa Left (Remote)
   - board: seeeduino_xiao_ble
-    shield: roBa_L
+    shield: roBa/roBa_L
 
-  # Settings Reset
+  # Settings Reset shield
   - board: seeeduino_xiao_ble
-    shield: settings_reset
+    shield: roBa/settings_reset
 
   # Holyiot NRF52840 Dongle
   - board: holyiot_nrf52840_dongle
