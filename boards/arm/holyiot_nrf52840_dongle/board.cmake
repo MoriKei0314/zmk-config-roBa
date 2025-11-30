@@ -1,0 +1,2 @@
+# board.cmake for Holyiot nRF52840 Dongle
+zephyr_extra_dts_overlay_ifdef(CONFIG_BOARD_HOLYIOT_NRF52840_DONGLE)
