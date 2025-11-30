@@ -7,24 +7,19 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build_roBa_L:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
     with:
-      # コンフィグパス（ルートなら空でOK）
-      config_path: ''
-      
-      # build_matrix の中に board と shield を列挙する
-      build_matrix: |
-        [
-          {
-            "board": "seeeduino_xiao_ble",
-            "shield": "roBa/roBa_L"
-          },
-          {
-            "board": "seeeduino_xiao_ble",
-            "shield": "roBa/roBa_R"
-          },
-          {
-            "board": "holyiot_nrf52840_dongle"
-          }
-        ]
+      board: seeeduino_xiao_ble
+      shield: roBa/roBa_L
+
+  build_roBa_R:
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    with:
+      board: seeeduino_xiao_ble
+      shield: roBa/roBa_R
+
+  build_dongle:
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    with:
+      board: holyiot_nrf52840_dongle
