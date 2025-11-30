@@ -5,4 +5,3 @@ build:
   settings:
     board_root: .
     dts_root: .
-    shield_root: boards/shields
