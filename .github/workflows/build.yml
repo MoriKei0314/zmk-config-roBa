@@ -1,14 +1,19 @@
-name: Build roBa ZMK Firmware
-
+name: ZMK Build
 on:
   push:
-    branches: [main]
-  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
     with:
-      config_path: "config"
-      build_matrix_path: "build.yaml"
+      config_path: 'config/roBa.keymap'
+    secrets: inherit
+    strategy:
+      matrix:
+        include:
+          - board: holyiot_nrf52840_dongle
+            shield: roBa_R
+            snippet: studio-rpc
