@@ -1,5 +1,17 @@
+# GitHub Actions ワークフロー
+name: Build roBa ZMK Firmware
+
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    with:
+      # roBa本体が使用しているボードを指定 (XIAO nRF52840)
+      board: seeeduino_xiao_ble 
+      
+      # roBaのシールド名を指定
+      shield: roBa
+      
+      # ビルドするターゲットを指定。左右本体 (Peripheral) とドングル (Central)
+      targets: roBa_L roBa_R holyiot_nrf52840_dongle
