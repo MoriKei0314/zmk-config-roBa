@@ -6,6 +6,6 @@ include:
     shield: roBa_L
   - board: seeeduino_xiao_ble
     shield: settings_reset
-  # dongleは後で対応
-  # - board: holyiot_nrf52840_dongle
-  #   shield: roBa_dongle
+  dongleは後で対応
+  - board: holyiot_nrf52840_dongle
+    shield: roBa_dongle
