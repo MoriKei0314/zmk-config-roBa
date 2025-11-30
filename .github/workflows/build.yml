@@ -1,6 +1,5 @@
 name: Build roBa ZMK Firmware
 
-# Workflow のトリガー
 on:
   push:
     branches: [main]
@@ -9,14 +8,7 @@ on:
 
 jobs:
   build:
-    # ZMK 公式 build-user-config.yml を呼び出す（新仕様対応）
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
     with:
-      # config フォルダのパス（必須）
-      config_path: "config"
-
-      # build.yaml を読み込んで複数 board/shield をビルド
+      config_path: ""
       build_matrix_path: "build.yaml"
-
-      # （オプション）Artifact 名を変更したい場合はこちら
-      # artifact_name: "roBa_firmware"
