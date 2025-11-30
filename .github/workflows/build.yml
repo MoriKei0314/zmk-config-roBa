@@ -1,4 +1,5 @@
 name: ZMK Build
+
 on:
   push:
     branches:
@@ -9,11 +10,28 @@ jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
     with:
-      config_path: 'config/roBa.keymap'
+      # 単一ファイルではなく config ディレクトリを指定
+      config_path: 'config'
     secrets: inherit
     strategy:
       matrix:
         include:
+          # holyiot_nrf52840_dongle + roBa_R
           - board: holyiot_nrf52840_dongle
             shield: roBa_R
+            snippet: studio-rpc
+
+          # holyiot_nrf52840_dongle + roBa_L
+          - board: holyiot_nrf52840_dongle
+            shield: roBa_L
+            snippet: studio-rpc
+
+          # seeeduino_xiao_ble + roBa_R
+          - board: seeeduino_xiao_ble
+            shield: roBa_R
+            snippet: studio-rpc
+
+          # seeeduino_xiao_ble + roBa_L
+          - board: seeeduino_xiao_ble
+            shield: roBa_L
             snippet: studio-rpc
