@@ -1,2 +1,6 @@
-# board.cmake for Holyiot nRF52840 Dongle
-zephyr_extra_dts_overlay_ifdef(CONFIG_BOARD_HOLYIOT_NRF52840_DONGLE)
+# SPDX-License-Identifier: Apache-2.0
+
+board_runner_args(nrfjprog "--nrf-family=NRF52")
+board_runner_args(jlink "--device=nrf52" "--speed=4000")
+include(${ZEPHYR_BASE}/boards/common/nrfjprog.board.cmake)
+include(${ZEPHYR_BASE}/boards/common/jlink.board.cmake)
