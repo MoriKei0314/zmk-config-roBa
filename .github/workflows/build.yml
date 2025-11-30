@@ -10,5 +10,8 @@ jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
     with:
-      config_path: ""
+      config_path: "config"
       build_matrix_path: "build.yaml"
+    env:
+      # 一時ディレクトリ衝突回避
+      ZMK_TEMP_DIR: "/tmp/zmk-config-${{ github.run_id }}"
