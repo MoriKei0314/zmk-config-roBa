@@ -1,0 +1,42 @@
+/*
+ * Holyiot nRF52840 Dongle Device Tree Source (.dts)
+ * * NOTE: This file defines the hardware peripherals (USB, LEDs, etc.) for the dongle.
+ * It assumes a general nRF52840 dongle structure. Pin assignments might need adjustment
+ * based on the specific Holyiot hardware revision.
+ */
+#include <dt-bindings/zmk/kscan_gpio.h>
+#include <nordic/nrf52840_qfaa.dtsi>
+
+/ {
+    chosen {
+        zephyr,sram = &sram0;
+        zephyr,code-partition = &code_partition;
+        zephyr,flash = &flash0;
+        zephyr,console = &uart0;
+        zephyr,shell-uart = &uart0;
+    };
+
+    aliases {
+        led0 = &led0;
+        led1 = &led1;
+    };
+
+    leds {
+        compatible = "gpio-leds";
+        // LED定義の例: ピン番号はドングルにより要確認
+        led0: led_0 {
+            gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
+            label = "Red LED";
+        };
+        led1: led_1 {
+            gpios = <&gpio0 6 GPIO_ACTIVE_LOW>; 
+            label = "Green LED";
+        };
+    };
+}; 
+
+// USBを有効化
+&usbd {
+    compatible = "nordic,nrf-usbd";
+    status = "okay";
+};
