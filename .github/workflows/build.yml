@@ -12,6 +12,7 @@ jobs:
     with:
       config_path: "config"
       build_matrix_path: "build.yaml"
+
+  # env は jobs または steps 内で設定する
     env:
-      # 一時ディレクトリ衝突回避
       ZMK_TEMP_DIR: "/tmp/zmk-config-${{ github.run_id }}"
