@@ -3,16 +3,34 @@
  * SPDX-License-Identifier: MIT
  */
 
+#include <dt-bindings/zmk/matrix_transform.h>
+
 / {
     chosen {
         zmk,kscan = &kscan_dongle;
-        zmk,matrix_transform = &default_transform;
     };
 
     kscan_dongle: kscan {
         compatible = "zmk,kscan-gpio-direct";
         wakeup-source;
         
-        input-gpios = <&gpio0 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        input-gpios = <&gpio0 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    };
+    
+    // ダミーのtrackballリスナー（dongleには実際のトラックボールはない）
+    trackball_listener {
+        compatible = "zmk,input-listener";
+        status = "disabled";
+    };
+};
+
+// ダミーのトラックボールノード（keymapの参照を満たすため）
+&spi0 {
+    status = "disabled";
+    
+    trackball: trackball@0 {
+        compatible = "pixart,pmw3610";
+        status = "disabled";
+        reg = <0>;
     };
 };
