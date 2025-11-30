@@ -7,11 +7,6 @@ jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
     with:
-      # roBa本体が使用しているボードを指定 (XIAO nRF52840)
-      board: seeeduino_xiao_ble 
-      
-      # roBaのシールド名を指定
-      shield: roBa
-      
-      # ビルドするターゲットを指定。左右本体 (Peripheral) とドングル (Central)
-      targets: roBa_L roBa_R holyiot_nrf52840_dongle
+      # ZMKのカスタムビルドワークフローでは、boardとshieldをtargetsに含める形式に変わりました。
+      # roBa本体のボードは seeeduino_xiao_ble です。
+      targets: seeeduino_xiao_ble/roBa/roBa_L seeeduino_xiao_ble/roBa/roBa_R holyiot_nrf52840_dongle
