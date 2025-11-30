@@ -7,6 +7,5 @@ jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
     with:
-      # ZMKのカスタムビルドワークフローでは、boardとshieldをtargetsに含める形式に変わりました。
-      # roBa本体のボードは seeeduino_xiao_ble です。
-      targets: seeeduino_xiao_ble/roBa/roBa_L seeeduino_xiao_ble/roBa/roBa_R holyiot_nrf52840_dongle
+      # 入力名 'targets' を ZMK ワークフローが期待する 'config-names' に修正
+      config-names: seeeduino_xiao_ble/roBa/roBa_L seeeduino_xiao_ble/roBa/roBa_R holyiot_nrf52840_dongle
