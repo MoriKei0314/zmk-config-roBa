@@ -1,42 +1,131 @@
 /*
- * Holyiot nRF52840 Dongle Device Tree Source (.dts)
- * * NOTE: This file defines the hardware peripherals (USB, LEDs, etc.) for the dongle.
- * It assumes a general nRF52840 dongle structure. Pin assignments might need adjustment
- * based on the specific Holyiot hardware revision.
+ * SPDX-License-Identifier: MIT
+ * Holyiot nRF52840 Dongle Device Tree Source
  */
-#include <dt-bindings/zmk/kscan_gpio.h>
-#include <nordic/nrf52840_qfaa.dtsi>
+
+/dts-v1/;
+#include <nordic/nrf52840_qiaa.dtsi>
 
 / {
-    chosen {
-        zephyr,sram = &sram0;
-        zephyr,code-partition = &code_partition;
-        zephyr,flash = &flash0;
-        zephyr,console = &uart0;
-        zephyr,shell-uart = &uart0;
-    };
+	model = "HolyIOT nRF52840 Dongle";
+	compatible = "holyiot,nrf52840-dongle";
 
-    aliases {
-        led0 = &led0;
-        led1 = &led1;
-    };
+	chosen {
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+		zephyr,code-partition = &code_partition;
+		zephyr,console = &cdc_acm_uart;
+		zmk,battery = &vbatt;
+	};
 
-    leds {
-        compatible = "gpio-leds";
-        // LED定義の例: ピン番号はドングルにより要確認
-        led0: led_0 {
-            gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
-            label = "Red LED";
-        };
-        led1: led_1 {
-            gpios = <&gpio0 6 GPIO_ACTIVE_LOW>; 
-            label = "Green LED";
-        };
-    };
-}; 
+	leds {
+		compatible = "gpio-leds";
+		led0: led_0 {
+			gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
+			label = "Red LED";
+		};
+		led1: led_1 {
+			gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
+			label = "Green LED";
+		};
+	};
 
-// USBを有効化
-&usbd {
-    compatible = "nordic,nrf-usbd";
-    status = "okay";
+	aliases/*
+ * SPDX-License-Identifier: MIT
+ * Holyiot nRF52840 Dongle Device Tree Source
+ */
+
+/dts-v1/;
+#include <nordic/nrf52840_qiaa.dtsi>
+#include "holyiot_nrf52840_dongle-pinctrl.dtsi"
+
+/ {
+	model = "HolyIOT nRF52840 Dongle";
+	compatible = "holyiot,nrf52840-dongle";
+
+	chosen {
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+		zephyr,code-partition = &code_partition;
+		zephyr,console = &cdc_acm_uart;
+		zmk,battery = &vbatt;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		led0: led_0 {
+			gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
+			label = "Red LED";
+		};
+		led1: led_1 {
+			gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
+			label = "Green LED";
+		};
+	};
+
+	aliases {
+		led0 = &led0;
+		led1 = &led1;
+	};
+
+	vbatt: vbatt {
+		compatible = "zmk,battery-nrf-vddh";
+	};
 };
+
+&flash0 {
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		sd_partition: partition@0 {
+			label = "softdevice";
+			reg = <0x00000000 0x00026000>;
+		};
+		code_partition: partition@26000 {
+			label = "code_partition";
+			reg = <0x00026000 0x000c6000>;
+		};
+
+		storage_partition: partition@ec000 {
+			label = "storage";
+			reg = <0x000ec000 0x00008000>;
+		};
+
+		boot_partition: partition@f4000 {
+			label = "adafruit_boot";
+			reg = <0x000f4000 0x0000c000>;
+		};
+	};
+};
+
+&adc {
+	status = "okay";
+};
+
+&gpiote {
+	status = "okay";
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+&gpio1 {
+	status = "okay";
+};
+
+&usbd {
+	compatible = "nordic,nrf-usbd";
+	status = "okay";
+	cdc_acm_uart: cdc_acm_uart {
+		compatible = "zephyr,cdc-acm-uart";
+	};
+};
+
+&uart0 {
+	status = "disabled";
+};
+
+zephyr_udc0: &usbd {};
