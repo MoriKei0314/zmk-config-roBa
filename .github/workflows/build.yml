@@ -1,11 +1,30 @@
-# GitHub Actions ワークフロー
 name: Build roBa ZMK Firmware
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
     with:
-      # 入力名 'targets' を ZMK ワークフローが期待する 'config-names' に修正
-      config-names: seeeduino_xiao_ble/roBa/roBa_L seeeduino_xiao_ble/roBa/roBa_R holyiot_nrf52840_dongle
+      # コンフィグパス（ルートなら空でOK）
+      config_path: ''
+      
+      # build_matrix の中に board と shield を列挙する
+      build_matrix: |
+        [
+          {
+            "board": "seeeduino_xiao_ble",
+            "shield": "roBa/roBa_L"
+          },
+          {
+            "board": "seeeduino_xiao_ble",
+            "shield": "roBa/roBa_R"
+          },
+          {
+            "board": "holyiot_nrf52840_dongle"
+          }
+        ]
