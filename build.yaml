@@ -6,6 +6,7 @@ include:
     shield: roBa_L
   - board: seeeduino_xiao_ble
     shield: settings_reset
-  # 既存のnRF52840 Dongleボードを使用
+  # nrf52840dongle用にUF2形式も生成
   - board: nrf52840dongle_nrf52840
     shield: roBa_dongle
+    snippet: zmk-usb-uf2
